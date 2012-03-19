@@ -1,5 +1,5 @@
 require 'sprockets'
-require 'closure'
+require 'uglifier'
 require 'yui/compressor'
 
 require 'sinatra/sprockets/configuration'
@@ -20,7 +20,7 @@ module Sinatra
       end
 
       if config.compress_assets?
-        environment.js_compressor = config.js_compressor || Closure::Compiler.new
+        environment.js_compressor = config.js_compressor || Uglifier.new
         environment.css_compressor = config.css_compressor || YUI::CssCompressor.new
       else
         environment.js_compressor = false
